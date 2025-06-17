@@ -6,7 +6,7 @@ st.set_page_config(page_title="HR Policy Chatbot", page_icon="💬")
 
 # App title
 st.title("💼 HR Policy Chatbot")
-st.markdown("Ask a question based on company policy documents.")
+st.markdown("Ask a question based on company HR policy documents.")
 
 # Session state to hold chat history
 if "messages" not in st.session_state:
