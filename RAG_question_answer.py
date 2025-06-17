@@ -69,11 +69,13 @@ vectorstore = PineconeVectorStore(
 
 # prmopt template - frames the question and context passed to the llm
 template = """
-You are an analyst answering questions using excerpts from UK political party manifestos (2024 General Election).
+You are an analyst answering questions using excerpts from HR policy documents.
 
-Answer strictly based on the provided context.  
+Answer strictly based on the provided context.
+Please give the 'source' URL and 'page number from the chunk used.
 If the context is insufficient, reply: "I don't have any information on this I'm afraid."  
 Do not use external knowledge or make assumptions.
+
 
 Context: {context}
 
@@ -85,8 +87,9 @@ prompt = ChatPromptTemplate.from_template(template)
 # llm model used
 llm = ChatOpenAI(  
     api_key=openai_api,  
-    model='gpt-3.5-turbo',  
-    temperature=0.0  
+    model='gpt-3.5-turbo',
+    #model='gpt-4o',
+    temperature=0.0 
 )
 
 # parses the outout of the llm into a string format

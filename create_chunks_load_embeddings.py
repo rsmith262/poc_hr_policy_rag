@@ -78,11 +78,12 @@ def chunk_sections_with_metadata(docs, chunk_size=1000, chunk_overlap=200):
     all_chunks = []
     for doc in docs:
         base_metadata = doc.metadata.copy()
+        section_name = base_metadata.get("section") or "Unknown"
         chunks = splitter.split_text(doc.page_content)
         for i, chunk in enumerate(chunks):
             chunk_metadata = base_metadata.copy()
             chunk_metadata["chunk_index"] = i
-            chunk_metadata["source_section"] = base_metadata.get("section", "Unknown")
+            chunk_metadata["source_section"] = section_name
             all_chunks.append({"content": chunk, "metadata": chunk_metadata})
     return all_chunks
 
