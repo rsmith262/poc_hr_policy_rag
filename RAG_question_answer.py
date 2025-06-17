@@ -109,10 +109,12 @@ def handle_query(query):
     response = chain.invoke(query)
     return response
 
+# uncomment this to use in CLI
+
 # loop for asking multiple questions
-while True:
-    query = input("Enter your question (or 'exit' to quit): ")
-    if query.lower() == 'exit':
-        break
-    response = handle_query(query)
-    print(f"\nAnswer: {response}\n")
+# while True:
+#     query = input("Enter your question (or 'exit' to quit): ")
+#     if query.lower() == 'exit':
+#         break
+#     response = handle_query(query)
+#     print(f"\nAnswer: {response}\n")
