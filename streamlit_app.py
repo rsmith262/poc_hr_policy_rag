@@ -23,13 +23,13 @@ with st.sidebar:
         **Instructions:**
         - Ask a question about HR policies.
         - The model will retrieve the most relevant sections and generate a concise answer.
-        - A link will be given to the relevant document and page numbers the answer was generated using
+        - A link will be given to the relevant document and page numbers the answer was generated from.
         - Chat history is preserved during your session.
 
         **Note:** This demo uses sample policy documents stored in cloud storage.
         """
     )
-    st.info("For internal testing only.")
+    # st.info("For internal testing only.")
 
 # App title
 st.title("💼 HR Policy Chatbot")
