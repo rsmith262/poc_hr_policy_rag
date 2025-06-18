@@ -36,11 +36,13 @@ def read_blob_to_bytes(blob_name):
 ##########################################################
 # Chunking logic
 
+# converts the headings to markdown so it can be used for chnunking
 def convert_to_markdown_style(text):
     text = re.sub(r"\n(\d+\.\s+[A-Z][^\n]+)", r"\n## \1", text)  # numbered headings
     text = re.sub(r"\n([A-Z][A-Za-z\s]+)\n", r"\n## \1\n", text)   # capitalized headers
     return text
 
+# extracts page data first with metadata including page number blob name and url
 def extract_text_by_page(blob_data, blob_name):
     doc = fitz.open(stream=blob_data, filetype="pdf")
     page_texts = []
@@ -58,6 +60,7 @@ def extract_text_by_page(blob_data, blob_name):
         page_texts.append({"text": text.strip(), "metadata": metadata})
     return page_texts
 
+# then splits further on markdown sections retianing the page metadata
 def split_by_headings_within_pages(page_texts):
     splitter = MarkdownHeaderTextSplitter(headers_to_split_on=[("##", "section")])
     all_sections = []
@@ -69,6 +72,7 @@ def split_by_headings_within_pages(page_texts):
             all_sections.append(doc)
     return all_sections
 
+# creates chunks with overlap using the sections from the previous function
 def chunk_sections_with_metadata(docs, chunk_size=1000, chunk_overlap=200):
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size,
@@ -88,7 +92,7 @@ def chunk_sections_with_metadata(docs, chunk_size=1000, chunk_overlap=200):
     return all_chunks
 
 ##########################################################
-# generate embeddings
+# generate embeddings from chunks
 
 model_name = 'text-embedding-ada-002'
 
@@ -111,6 +115,7 @@ pc_index = os.getenv("PINECONE_INDEX")
 pc = Pinecone(api_key=pc_api_key)
 index = pc.Index(pc_index)
 
+# stores embeddings in pinecone
 def store_embeddings_in_pinecone(embeddings, chunked_docs, document_name):
     pinecone_vectors = []
     for i, (embedding, chunk_dict) in enumerate(zip(embeddings, chunked_docs)):

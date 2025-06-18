@@ -12,7 +12,7 @@ from langchain_pinecone import PineconeVectorStore
 
 # openAI
 from langchain_openai import ChatOpenAI
-from langchain_openai import OpenAIEmbeddings # should be using this instead as one beloe is depricated
+from langchain_openai import OpenAIEmbeddings
 
 # chain imports
 from langchain_core.prompts import ChatPromptTemplate # changed this since initial script as it imported from somewhere else
@@ -67,7 +67,7 @@ vectorstore = PineconeVectorStore(
 
 ###############
 
-# prmopt template - frames the question and context passed to the llm
+# prompt template - frames the question and context passed to the llm
 template = """
 You are an analyst answering questions using excerpts from HR policy documents.
 

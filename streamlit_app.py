@@ -1,10 +1,13 @@
 import streamlit as st
 from RAG_question_answer import handle_query  # make sure this is imported from your existing code
 
+# This provides the code for the app front end
+
 # Streamlit page config
 st.set_page_config(page_title="HR Policy Chatbot", page_icon="💬")
 
 # Sidebar content
+# This adds a sidebar with some info and instructions on using the app
 with st.sidebar:
     st.title("📘 About This App")
     st.markdown(
@@ -29,11 +32,10 @@ with st.sidebar:
         **Note:** This demo uses sample policy documents stored in cloud storage.
         """
     )
-    # st.info("For internal testing only.")
 
 # App title
 st.title("💼 HR Policy Chatbot")
-st.markdown("Ask a question based on company HR policy documents.")
+st.markdown("Ask a question based on policy documents.")
 
 # Session state to hold chat history
 if "messages" not in st.session_state:
@@ -52,6 +54,8 @@ if prompt := st.chat_input("Ask a question about HR policies..."):
         st.markdown(prompt)
 
     # Get model response
+    # uses imported query logic from RAG_question_answer.py
+    # see file for langchain and prompt logic
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             response = handle_query(prompt)
