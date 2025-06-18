@@ -4,6 +4,24 @@ from RAG_question_answer import handle_query  # make sure this is imported from 
 # Streamlit page config
 st.set_page_config(page_title="HR Policy Chatbot", page_icon="💬")
 
+# Sidebar content
+with st.sidebar:
+    st.title("📘 About This App")
+    st.markdown(
+        """
+        This is a **proof of concept** HR Policy chatbot that uses RAG (Retrieval-Augmented Generation).
+
+        **Instructions:**
+        - Ask a question about HR policies.
+        - The model will retrieve the most relevant sections and generate a concise answer.
+        - A link will be given to the relevant document and page numbers the answer was generated using
+        - Chat history is preserved during your session.
+
+        **Note:** This demo uses sample policy documents stored in cloud storage.
+        """
+    )
+    st.info("For internal testing only.")
+
 # App title
 st.title("💼 HR Policy Chatbot")
 st.markdown("Ask a question based on company HR policy documents.")
