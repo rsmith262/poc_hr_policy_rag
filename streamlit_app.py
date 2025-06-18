@@ -21,15 +21,14 @@ with st.sidebar:
         - Maternity, Paternity and Parental Leave Policy
         - Remuneration Policy
         - Retirement Policy
-        - Sabbitical Policy
+        - Sabbatical Policy
 
         **Instructions:**
         - Ask a question about HR policies.
         - The model will retrieve the most relevant sections and generate a concise answer.
-        - A link will be given to the relevant document and page numbers the answer was generated from.
+        - A link will be given to the relevant document and page number(s) the answer was generated from.
         - Chat history is preserved during your session.
 
-        **Note:** This demo uses sample policy documents stored in cloud storage.
         """
     )
 
