@@ -11,6 +11,15 @@ with st.sidebar:
         """
         This is a **proof of concept** HR Policy chatbot that uses RAG (Retrieval-Augmented Generation).
 
+        Documents included in the knowledgebase
+
+        - Annual Leave Policy
+        - Flexible Working Policy
+        - Maternity, Paternity and Parental Leave Policy
+        - Remuneration Policy
+        - Retirement Policy
+        - Sabbitical Policy
+
         **Instructions:**
         - Ask a question about HR policies.
         - The model will retrieve the most relevant sections and generate a concise answer.
